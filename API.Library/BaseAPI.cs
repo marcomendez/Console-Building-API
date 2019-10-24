@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Base
+﻿namespace Base
 {
+    /// <summary>
+    /// Base class that contains methods and attributes commons.
+    /// </summary>
     public abstract class BaseAPI
     {
-        public string name;
+        private readonly string name;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="name">Value to set Base Name.</param>
         public BaseAPI(string name)
         {
             this.name = name.ToLower();
         }
 
+        /// <summary>
+        /// Get name value.
+        /// </summary>
+        /// <returns>string with name value.</returns>
         public string GetName()
         {
             return name;

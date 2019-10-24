@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using Commands;
 using Root;
 
@@ -12,7 +11,7 @@ namespace TestAPI
         public void Verify_RootCommandAndOneCommand_Return_True_Test()
         {
             RootCommand rootCommand = new RootCommand("git");
-            rootCommand.AddCommand(new Command("Add"));
+            rootCommand.AddChild(new Command("Add"));
 
             Assert.IsTrue(rootCommand.Run("git Add"));
             Assert.IsTrue(rootCommand.Run("git add"));
@@ -24,8 +23,8 @@ namespace TestAPI
         public void Verify_RootCommandAndTwoCommand_Return_True_Test()
         {
             RootCommand rootCommand = new RootCommand("git");
-            rootCommand.AddCommand(new Command("Add"));
-            rootCommand.AddCommand(new Command("Clone"));
+            rootCommand.AddChild(new Command("Add"));
+            rootCommand.AddChild(new Command("Clone"));
 
             Assert.IsTrue(rootCommand.Run("git Add"));
             Assert.IsTrue(rootCommand.Run("git add"));
@@ -41,21 +40,21 @@ namespace TestAPI
         [TestMethod]
         public void Verify_RootCommandAndTwoCommandIsCorrectCommand_Return_True_Test()
         {
-            RootCommand rootCommand = new RootCommand("git");
-            rootCommand.AddCommand(new Command("Add"));
-            rootCommand.AddCommand(new Command("CLone"));
+            RootCommand rootCommand = new RootCommand("gIt");
+            rootCommand.AddChild(new Command("Add"));
+            rootCommand.AddChild(new Command("CLone"));
 
             Assert.IsTrue(rootCommand.Run("git Add Clone"));
             Assert.IsTrue(rootCommand.Run("git add clone"));
             Assert.IsTrue(rootCommand.Run("git AdD CloNe"));
-            Assert.IsTrue(rootCommand.Run("git ADD CLONE"));
+            Assert.IsTrue(rootCommand.Run("gIt ADD CLONE"));
         }
 
         [TestMethod]
         public void Verify_CommandIsNotCorrect_Return_False_Test()
         {
-            RootCommand rootCommand = new RootCommand("git");
-            rootCommand.AddCommand(new Command("add"));
+            RootCommand rootCommand = new RootCommand("it");
+            rootCommand.AddChild(new Command("add"));
 
             Assert.IsFalse(rootCommand.Run("git Adde"));
             Assert.IsFalse(rootCommand.Run("git adde"));
