@@ -38,16 +38,15 @@ namespace TestAPI
         }
 
         [TestMethod]
-        public void Verify_RootCommandAndTwoCommandIsCorrectCommand_Return_True_Test()
+        public void Verify_Comand_As_ArrayString_Return_True()
         {
-            RootCommand rootCommand = new RootCommand("gIt");
+            RootCommand rootCommand = new RootCommand("git");
             rootCommand.AddChild(new Command("Add"));
-            rootCommand.AddChild(new Command("CLone"));
 
-            Assert.IsTrue(rootCommand.Run("git Add Clone"));
-            Assert.IsTrue(rootCommand.Run("git add clone"));
-            Assert.IsTrue(rootCommand.Run("git AdD CloNe"));
-            Assert.IsTrue(rootCommand.Run("gIt ADD CLONE"));
+            Assert.IsTrue(rootCommand.Run(new string[] { "git", "add" }));
+            Assert.IsTrue(rootCommand.Run(new string[] { "git", "ADd" }));
+            Assert.IsTrue(rootCommand.Run(new string[] { "git", "aDD" }));
+            Assert.IsTrue(rootCommand.Run(new string[] { "GIT", "ADD" }));
         }
 
         [TestMethod]

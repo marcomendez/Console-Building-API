@@ -5,7 +5,7 @@ namespace Commands
     /// <summary>
     /// Command.
     /// </summary>
-    public class Command : BaseAPI
+    public class Command : BaseCommand
     {
         /// <summary>
         /// Constructor.
